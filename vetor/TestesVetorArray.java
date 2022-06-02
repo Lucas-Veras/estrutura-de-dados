@@ -1,6 +1,6 @@
 package vetor;
 
-public class Main {
+public class TestesVetorArray {
 
 	public static void main(String[] args) throws VetorVazioException {
 		VetorArray vetor = new VetorArray(2);
