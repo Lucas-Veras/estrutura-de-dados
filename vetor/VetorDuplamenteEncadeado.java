@@ -6,17 +6,18 @@ public class VetorDuplamenteEncadeado implements IVetor {
 	private int tamanho;
 	
 	public VetorDuplamenteEncadeado() {
-		header = null;
-		trailer = header;
+		header = new Node(null, null, null); //proximo, anterior, elemento
+		trailer = new Node(null, header, null);
+		header.setProximo(trailer);
 		tamanho = 0;
 	}
-	
+
 	@Override
 	public Object elemAtRank(Integer r) throws VetorVazioException {
 		if (isEmpty()) {
 			throw new VetorVazioException("Vetor vazio!");
 		}
-		else if(r > (tamanho - 1) || r < 0) {
+		else if (r > (tamanho - 1) || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}
 		return atRank(r).getValor();
@@ -27,7 +28,7 @@ public class VetorDuplamenteEncadeado implements IVetor {
 		if (isEmpty()) {
 			throw new VetorVazioException("Vetor vazio!");
 		}
-		else if(r > (tamanho - 1) || r < 0) {
+		else if (r > (tamanho - 1) || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}
 		Node node = atRank(r);
@@ -38,27 +39,23 @@ public class VetorDuplamenteEncadeado implements IVetor {
 	
 	@Override
 	public void insertAtRank(Integer r, Object o) throws VetorVazioException {
-		if(r > (tamanho - 1) || r < 0) {
+		if (r > size() || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}
-		Node novo = new Node();
-        novo.setValor(o);
-        if(r == tamanho && tamanho != 0){
-            Node prev = atRank(r);
-            Node next = trailer;
-            next.setAnterior(novo);
-            prev.setProximo(novo);
-        }
-        else if(r == 0) {
-        	header.setValor(o);
-        	
-        }
-        else {
-            Node next = atRank(r);
-            Node prev = next.getAnterior();
-            next.setProximo(novo);
-            prev.setAnterior(novo);
-        }
+		else if (tamanho != 0 && r == tamanho){
+	        Node anterior = atRank(r);
+	        Node proximo = trailer;
+	        Node novo = new Node(proximo, anterior, o);
+	        proximo.setAnterior(novo);
+	        anterior.setProximo(novo);
+	    }
+	    else {
+	        Node proximo = atRank(r);
+	        Node anterior = proximo.getAnterior();
+	        Node novo = new Node(proximo, anterior, o);
+	        proximo.setAnterior(novo);
+	        anterior.setProximo(novo);
+	    }
 		tamanho++;
 	}
 	
@@ -67,7 +64,7 @@ public class VetorDuplamenteEncadeado implements IVetor {
 		if (isEmpty()) {
 			throw new VetorVazioException("Vetor vazio!");
 		}
-		else if(r > (tamanho - 1) || r < 0) {
+		else if (r > (tamanho - 1) || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}// fazer o do primeiro elemento
 		Node node = atRank(r);
@@ -85,7 +82,7 @@ public class VetorDuplamenteEncadeado implements IVetor {
 	
 	public Node atRank(Integer r) {
 		Node node = new Node();
-		if(r <= size()/2) {
+		if (r <= size()/2) {
 			node = header.getProximo();
 			for(int i = 0; i < r; i++) {
 				node = node.getProximo();
@@ -103,7 +100,7 @@ public class VetorDuplamenteEncadeado implements IVetor {
 	public Integer rankOf(Node node) {
 		Node aux = header.getProximo();
 		int r = 0;
-		while(aux != node && aux != trailer) {
+		while (aux != node && aux != trailer) {
 			aux = aux.getProximo();
 			r++;
 		}
@@ -121,10 +118,10 @@ public class VetorDuplamenteEncadeado implements IVetor {
 	}
 	
 	public void mostrar() {
-		Node aux = header;
-		for(int i = 0; i < tamanho - 1; i++) {
+		Node aux = header.getProximo();
+		for(int i = 0; i < tamanho; i++) {
 			System.out.println(aux.getValor());
-			aux = header.getProximo();
+			aux = aux.getProximo();
 		}
 	}
 	

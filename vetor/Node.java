@@ -5,6 +5,15 @@ public class Node {
 	private Node anterior;
 	private Object valor;
 	
+	public Node() {
+	}
+	
+	public Node(Node proximo, Node anterior, Object valor) {
+		this.proximo = proximo;
+		this.anterior = anterior;
+		this.valor = valor;
+	}
+	
 	public Node getProximo() {
 		return proximo;
 	}
