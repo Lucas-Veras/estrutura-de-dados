@@ -31,7 +31,7 @@ public class ListaArray implements ILista {
 		if(isEmpty()) {
 			throw new ListaVaziaException("A lista está vazia");
 		}
-		else if(n > fim || n < 0) {
+		else if(n > fim || n < 0 || q > fim || q < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
 		Object aux = lista[n];

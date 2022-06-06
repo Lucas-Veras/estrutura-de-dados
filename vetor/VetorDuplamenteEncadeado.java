@@ -109,7 +109,7 @@ public class VetorDuplamenteEncadeado implements IVetor {
 	
 	@Override
 	public boolean isEmpty() {
-		return header == null;
+		return tamanho == 0;
 	}
 	
 	@Override
