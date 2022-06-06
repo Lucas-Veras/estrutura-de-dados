@@ -33,7 +33,17 @@ public class TestesListaArray {
 		lista2.mostrar();
 		System.out.println("Após do índice 2: " + lista2.after(2));
 		System.out.println("Antes do índice 2: " + lista2.before(2));
-		lista2.insertAfter(2, 50);
+		
+		System.out.println("--------------------");
+		System.out.println("Vetor 2:");
+		lista2.insertBefore(0, 50);
+		lista2.insertAfter(4, 60);
+		lista2.mostrar();
+		
+		System.out.println("--------------------");
+		System.out.println("Vetor 2:");
+		lista2.swapElements(0, 1);
+		lista2.replaceElement(2, 100);
 		lista2.mostrar();
 	}
 

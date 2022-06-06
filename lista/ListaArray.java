@@ -31,7 +31,7 @@ public class ListaArray implements ILista {
 		if(isEmpty()) {
 			throw new ListaVaziaException("A lista está vazia");
 		}
-		else if(n > fim && n < 0) {
+		else if(n > fim || n < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
 		Object aux = lista[n];
@@ -41,17 +41,17 @@ public class ListaArray implements ILista {
 
 	@Override
 	public void insertBefore(int n, Object o) throws ListaVaziaException {
-		if(n > fim && n < 0) {
+		if(n > fim || n < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
 		else if(size() <= capacidade - 1) {
 			this.capacidade = capacidade * 2;
 			Object[] novo = new Object[capacidade];
-			for(int i = 0; i < n - 2; i++) {
+			for (int i = 0; i <= n - 1; i++) {
 				novo[i] = lista[i];
-			}
-			for(int i = n; i < size(); i++) {
-				novo[i] = lista[i];
+			}			
+			for (int i = n; i < size() + 1; i++) {
+				novo[i + 1] = lista[i];
 			}
 			lista = novo;
 		}
@@ -61,33 +61,33 @@ public class ListaArray implements ILista {
 			}
 		}
 		fim++;
-		lista[n - 1] = o;
+		lista[n] = o;
 	}
-//Arrumar
+
 	@Override
 	public void insertAfter(int n, Object o) throws ListaVaziaException {
 		if(isEmpty()) {
 			throw new ListaVaziaException("A lista está vazia");
 		}
-		else if(n > fim && n < 0) {
+		else if(n > fim || n < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
 		else if(size() <= capacidade - 1) {
 			this.capacidade = capacidade * 2;
 			Object[] novo = new Object[capacidade];
-//			for(int i = 0; i <= n; i++) {
-//				novo[i] = lista[i];
-//			}
-			for(int i = n + 2; i < size(); i++) {
-				novo[i] = lista[i - 1];
+			for (int i = 0 ; i <= n ; i++) {
+				novo[i] = lista[i];
+			}
+			for (int i = n + 1; i < size() ; i++) {
+				novo[i + 1] = lista[i];
 			}
 			lista = novo;
 		}
-//		else {
-//			for(int i = size(); i > n; i++) {
-//				lista[i] = lista[i - 1];
-//			}
-//		}
+		else {
+			for(int i = size(); i > n; i++) {
+				lista[i] = lista[i - 1];
+			}
+		}
 		fim++;
 		lista[n + 1] = o;
 	}
@@ -129,7 +129,7 @@ public class ListaArray implements ILista {
 		if(isEmpty()) {
 			throw new ListaVaziaException("A lista está vazia");
 		}
-		else if(n > fim && n < 0) {
+		else if(n > fim || n < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
 		Object elemento = lista[n];
@@ -161,7 +161,7 @@ public class ListaArray implements ILista {
 		if(isEmpty()) {
 			throw new ListaVaziaException("A lista está vazia");
 		}
-		else if(p > fim && p < 0) {
+		else if(p > fim || p < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
 		return lista[p - 1];
@@ -172,7 +172,7 @@ public class ListaArray implements ILista {
 		if(isEmpty()) {
 			throw new ListaVaziaException("A lista está vazia");
 		}
-		else if(p > fim && p < 0) {
+		else if(p > fim || p < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
 		return lista[p + 1];
