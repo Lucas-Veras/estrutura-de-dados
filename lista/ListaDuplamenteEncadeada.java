@@ -52,8 +52,7 @@ public class ListaDuplamenteEncadeada implements ILista{
 		Node novo = new Node(proximo, anterior, o);
 		proximo.setAnterior(novo);
 		anterior.setProximo(novo);
-		tamanho++;
-				
+		tamanho++;		
 	}
 	
 	@Override
