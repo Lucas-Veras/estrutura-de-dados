@@ -41,6 +41,7 @@ public class ListaDuplamenteEncadeada implements ILista{
 		node2.setValor(aux);
 		
 	}
+	
 	@Override
 	public void insertBefore(int n, Object o) throws ListaVaziaException {
 		if(n > size() - 1 || n < 0) {
@@ -54,6 +55,7 @@ public class ListaDuplamenteEncadeada implements ILista{
 		tamanho++;
 				
 	}
+	
 	@Override
 	public void insertAfter(int n, Object o) throws ListaVaziaException {
 		if(n > size() - 1 || n < 0) {
@@ -66,6 +68,7 @@ public class ListaDuplamenteEncadeada implements ILista{
 		proximo.setAnterior(novo);
 		tamanho++;
 	}
+	
 	@Override
 	public void insertFirst(Object o) {
 		Node anterior = header;
@@ -75,6 +78,7 @@ public class ListaDuplamenteEncadeada implements ILista{
 		proximo.setAnterior(novo);
 		tamanho++;
 	}
+	
 	@Override
 	public void insertLast(Object o) {
 		Node proximo = trailer;

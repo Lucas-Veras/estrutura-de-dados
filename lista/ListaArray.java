@@ -41,23 +41,26 @@ public class ListaArray implements ILista {
 
 	@Override
 	public void insertBefore(int n, Object o) throws ListaVaziaException {
-		if(n > fim || n < 0) {
+		if(isEmpty()) {
+			throw new ListaVaziaException("A lista está vazia");
+		}
+		else if(n > fim || n < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
-		else if(size() <= capacidade - 1) {
+		else if(size() >= capacidade) {
 			this.capacidade = capacidade * 2;
 			Object[] novo = new Object[capacidade];
-			for (int i = 0; i <= n - 1; i++) {
+			for (int i = 0; i < n; i++) {
 				novo[i] = lista[i];
 			}			
-			for (int i = n; i < size() + 1; i++) {
-				novo[i + 1] = lista[i];
+			for (int i = size(); i > n; i--) {
+				novo[i] = lista[i - 1];
 			}
 			lista = novo;
 		}
 		else {
-			for(int i = n - 1; i < size(); i++) {
-				lista[i + 1] = lista[i];
+			for(int i = size(); i > n; i--) {
+				lista[i] = lista[i - 1];
 			}
 		}
 		fim++;
@@ -72,19 +75,19 @@ public class ListaArray implements ILista {
 		else if(n > fim || n < 0) {
 			throw new ListaVaziaException("A lista não possui esse índice");
 		}
-		else if(size() <= capacidade - 1) {
+		else if(size() >= capacidade) {
 			this.capacidade = capacidade * 2;
 			Object[] novo = new Object[capacidade];
 			for (int i = 0 ; i <= n ; i++) {
 				novo[i] = lista[i];
 			}
-			for (int i = n + 1; i < size() ; i++) {
-				novo[i + 1] = lista[i];
+			for (int i = size(); i > n + 1 ; i--) {
+				novo[i] = lista[i - 1];
 			}
 			lista = novo;
 		}
 		else {
-			for(int i = size(); i > n; i++) {
+			for(int i = size(); i > n + 1; i--) {
 				lista[i] = lista[i - 1];
 			}
 		}
@@ -94,17 +97,17 @@ public class ListaArray implements ILista {
 
 	@Override
 	public void insertFirst(Object o) {
-		if(size() <= capacidade - 1) {
+		if(size() >= capacidade) {
 			this.capacidade = capacidade * 2;
 			Object[] novo = new Object[capacidade];
-			for(int i = 0; i < size(); i++) {
-				novo[i + 1] = lista[i];
+			for(int i = size(); i > inicio; i--) {
+				novo[i] = lista[i - 1];
 			}
 			lista = novo;
 		}
 		else {
-			for(int i = 0; i < size(); i++) {
-				lista[i + 1] = lista[i];
+			for(int i = size(); i > inicio; i--) {
+				lista[i] = lista[i - 1];
 			}
 		}
 		fim++;
@@ -113,7 +116,7 @@ public class ListaArray implements ILista {
 
 	@Override
 	public void insertLast(Object o) {
-		if(size() <= capacidade - 1) {
+		if(size() >= capacidade) {
 			this.capacidade = capacidade * 2;
 			Object[] novo = new Object[capacidade];
 			for(int i = 0; i < size(); i++) {

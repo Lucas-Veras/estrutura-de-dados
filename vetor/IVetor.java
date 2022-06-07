@@ -5,6 +5,7 @@ public interface IVetor {
 	public Object replaceAtRank(Integer r, Object o) throws VetorVazioException;
 	public void insertAtRank(Integer r, Object o) throws VetorVazioException;
 	public Object removeAtRank(Integer r) throws VetorVazioException;
+	
 	public boolean isEmpty();
 	public int size();
 }
