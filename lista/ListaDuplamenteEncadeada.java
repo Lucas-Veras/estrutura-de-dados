@@ -43,23 +43,46 @@ public class ListaDuplamenteEncadeada implements ILista{
 	}
 	@Override
 	public void insertBefore(int n, Object o) throws ListaVaziaException {
-		// TODO Auto-generated method stub
-		
+		if(n > size() - 1 || n < 0) {
+			throw new ListaVaziaException("A lista não possui esse índice");
+		}
+		Node proximo = atRank(n);
+		Node anterior = proximo.getAnterior();
+		Node novo = new Node(proximo, anterior, o);
+		proximo.setAnterior(novo);
+		anterior.setProximo(novo);
+		tamanho++;
+				
 	}
 	@Override
 	public void insertAfter(int n, Object o) throws ListaVaziaException {
-		// TODO Auto-generated method stub
-		
+		if(n > size() - 1 || n < 0) {
+			throw new ListaVaziaException("A lista não possui esse índice");
+		}
+		Node anterior = atRank(n);
+		Node proximo = anterior.getProximo();
+		Node novo = new Node(proximo, anterior, o);
+		anterior.setProximo(novo);
+		proximo.setAnterior(novo);
+		tamanho++;
 	}
 	@Override
 	public void insertFirst(Object o) {
-		// TODO Auto-generated method stub
-		
+		Node anterior = header;
+		Node proximo = header.getProximo();
+		Node novo = new Node(proximo, anterior, o);
+		anterior.setProximo(novo);
+		proximo.setAnterior(novo);
+		tamanho++;
 	}
 	@Override
 	public void insertLast(Object o) {
-		// TODO Auto-generated method stub
-		
+		Node proximo = trailer;
+		Node anterior = trailer.getAnterior();
+		Node novo = new Node(proximo, anterior, o);
+		proximo.setAnterior(novo);
+		anterior.setProximo(novo);
+		tamanho++;
 	}
 	
 	@Override
