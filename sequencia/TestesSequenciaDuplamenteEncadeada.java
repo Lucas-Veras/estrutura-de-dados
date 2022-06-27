@@ -41,7 +41,7 @@ public class TestesSequenciaDuplamenteEncadeada {
 		System.out.println("Último: " + sequencia1.last());
 		
 		System.out.println("--------------------");
-		System.out.println("Retirado: " + sequencia1.remove(0));
+		System.out.println("Retirado: " + sequencia1.remove(sequencia1.atRank(0)));
 		System.out.println("Vetor 1:");
 		sequencia1.mostrar();
 		System.out.println("Tamanho: " + sequencia1.size());
@@ -54,19 +54,19 @@ public class TestesSequenciaDuplamenteEncadeada {
 		Sequencia3.insertLast(30);
 		Sequencia3.insertLast(40);
 		Sequencia3.mostrar();
-		System.out.println("Após do índice 2: " + Sequencia3.after(2));
-		System.out.println("Antes do índice 2: " + Sequencia3.before(2));
+		System.out.println("Após do índice 2: " + Sequencia3.after(Sequencia3.atRank(2)));
+		System.out.println("Antes do índice 2: " + Sequencia3.before(Sequencia3.atRank(2)));
 		
 		System.out.println("--------------------");
 		System.out.println("Vetor 2:");
-		Sequencia3.insertBefore(0, 50);
-		Sequencia3.insertAfter(4, 60);
+		Sequencia3.insertBefore(Sequencia3.atRank(0), 50);
+		Sequencia3.insertAfter(Sequencia3.atRank(4), 60);
 		Sequencia3.mostrar();
 		
 		System.out.println("--------------------");
 		System.out.println("Vetor 2:");
-		Sequencia3.swapElements(0, 1);
-		Sequencia3.replaceElement(2, 100);
+		Sequencia3.swapElements(Sequencia3.atRank(0), Sequencia3.atRank(1));
+		Sequencia3.replaceElement(Sequencia3.atRank(2), 100);
 		Sequencia3.mostrar();
 	}
 

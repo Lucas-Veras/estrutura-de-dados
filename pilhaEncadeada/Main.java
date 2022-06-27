@@ -20,7 +20,7 @@ public class Main {
 		teste.push(60);
 		teste.mostrar();
 		System.out.println("----------");
-		System.out.println("Top:"+teste.top());
+		System.out.println("Top:"+teste.top());		
 		System.out.println(teste.size());
 		System.out.println(teste.isEmpty());
 	}

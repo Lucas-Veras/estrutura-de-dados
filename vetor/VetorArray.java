@@ -16,7 +16,7 @@ public class VetorArray implements IVetor {
 		if(isEmpty()) {
 			throw new VetorVazioException("Vetor vazio!");
 		}
-		else if (r > (capacidade - 1) || r < 0) {
+		else if (r > size() || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}
 		return array[r];
@@ -27,7 +27,7 @@ public class VetorArray implements IVetor {
 		if(isEmpty()) {
 			throw new VetorVazioException("Vetor vazio!");
 		}
-		else if (r > (capacidade - 1) || r < 0) {
+		else if (r > size() || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}
 		Object elemento = array[r];
@@ -37,7 +37,7 @@ public class VetorArray implements IVetor {
 
 	@Override
 	public void insertAtRank(Integer r, Object o) throws VetorVazioException {
-		if (r > (capacidade - 1) || r < 0) {
+		if (r > size() || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}
 		else if (size() >= capacidade - 1) {
@@ -61,11 +61,11 @@ public class VetorArray implements IVetor {
 		if(isEmpty()) {
 			throw new VetorVazioException("Vetor vazio!");
 		}
-		else if (r > (capacidade - 1) || r < 0) {
+		else if (r > size() || r < 0) {
 			throw new VetorVazioException("O vetor não possui esse rank!");
 		}
 		Object elemento = array[r];
-		for(int i = r; i < size() - 1; i++) {
+		for(int i = r; i < size(); i++) {
 			array[i] = array[i + 1];
 		}
 		tamanho--;

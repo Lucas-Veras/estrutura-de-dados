@@ -66,7 +66,7 @@ public class SequenciaDuplamenteEncadeada implements ISequencia{
 		}
 		else if (r > (tamanho - 1) || r < 0) {
 			throw new SequenciaVaziaException("A Sequência não possui esse índice");
-		}// fazer o do primeiro elemento
+		}
 		Node node = atRank(r);
 		Node anterior = node.getAnterior();
 		Node proximo = node.getProximo();
@@ -81,57 +81,44 @@ public class SequenciaDuplamenteEncadeada implements ISequencia{
 	}
 
 	@Override
-	public Object replaceElement(int n, Object o) throws SequenciaVaziaException {
-		if(isEmpty()) {
-			throw new SequenciaVaziaException("A sequência está vazia");
+	public Object replaceElement(Node n, Object o) throws SequenciaVaziaException {
+		if(n == null) {
+			throw new SequenciaVaziaException("Nó inexistente!");
 		}
-		else if(n > size() - 1 || n < 0) {
-			throw new SequenciaVaziaException("A Sequência não possui esse índice");
-		}
-		Node node = atRank(n);
-		Object elemento = node.getValor();
-		node.setValor(o);
+		Object elemento = n.getValor();
+		n.setValor(o);
 		return elemento;
 	}
 
 	@Override
-	public void swapElements(int n, int q) throws SequenciaVaziaException {
-		if(isEmpty()) {
-			throw new SequenciaVaziaException("A Sequência está vazia");
+	public void swapElements(Node n, Node q) throws SequenciaVaziaException {
+		if(n == null || q == null) {
+			throw new SequenciaVaziaException("Nó inexistente!");
 		}
-		else if(n > size() - 1 || n < 0 || q > size() - 1 || q < 0) {
-			throw new SequenciaVaziaException("A Sequência não possui esse índice");
-		}
-		Node node1 = atRank(n);
-		Node node2 = atRank(q);
-		Object aux = node1.getValor();
-		node1.setValor(node2.getValor());
-		node2.setValor(aux);
+		Object aux = n.getValor();
+		n.setValor(q.getValor());
+		q.setValor(aux);
 	}
 
 	@Override
-	public void insertBefore(int n, Object o) throws SequenciaVaziaException {
-		if(n > size() - 1 || n < 0) {
-			throw new SequenciaVaziaException("A Sequência não possui esse índice");
+	public void insertBefore(Node n, Object o) throws SequenciaVaziaException {
+		if(n == null) {
+			throw new SequenciaVaziaException("Nó inexistente!");
 		}
-		Node proximo = atRank(n);
-		Node anterior = proximo.getAnterior();
-		Node novo = new Node(proximo, anterior, o);
-		proximo.setAnterior(novo);
-		anterior.setProximo(novo);
+		Node novo = new Node(n, n.getAnterior(), o);
+		n.getAnterior().setProximo(novo);
+		n.setAnterior(novo);
 		tamanho++;
 	}
 
 	@Override
-	public void insertAfter(int n, Object o) throws SequenciaVaziaException {
-		if(n > size() - 1 || n < 0) {
-			throw new SequenciaVaziaException("A Sequência não possui esse índice");
+	public void insertAfter(Node n, Object o) throws SequenciaVaziaException {
+		if (isEmpty()) {
+			throw new SequenciaVaziaException("A Sequencia está vazia!");
 		}
-		Node anterior = atRank(n);
-		Node proximo = anterior.getProximo();
-		Node novo = new Node(proximo, anterior, o);
-		anterior.setProximo(novo);
-		proximo.setAnterior(novo);
+		Node novo = new Node(n.getProximo(), n, o);
+		n.getProximo().setAnterior(novo);;
+		n.setProximo(novo);
 		tamanho++;
 	}
 
@@ -156,24 +143,21 @@ public class SequenciaDuplamenteEncadeada implements ISequencia{
 	}
 
 	@Override
-	public Object remove(int n) throws SequenciaVaziaException {
-		if(isEmpty()) {
-			throw new SequenciaVaziaException("A Sequência está vazia");
+	public Object remove(Node n) throws SequenciaVaziaException {
+		if(n == null) {
+			throw new SequenciaVaziaException("Nó inexistente!");
 		}
-		else if(n > size() - 1 || n < 0) {
-			throw new SequenciaVaziaException("A Sequência não possui esse índice");
+		if (isEmpty()) {
+			throw new SequenciaVaziaException("A Sequencia está vazia!");
 		}
-		Node node = atRank(n);
-		Node anterior = node.getAnterior();
-		Node proximo = node.getProximo();
-		anterior.setProximo(proximo);
-		proximo.setAnterior(anterior);
+		n.getAnterior().setProximo(n.getProximo());
+		n.getProximo().setAnterior(n.getAnterior());
 		// Opcional
-		node.setAnterior(null);
-		node.setProximo(null);
+		n.setAnterior(null);
+		n.setProximo(null);
 		//---------
 		tamanho--;
-		return node.getValor();
+		return n.getValor();
 	}
 
 	@Override
@@ -193,21 +177,19 @@ public class SequenciaDuplamenteEncadeada implements ISequencia{
 	}
 
 	@Override
-	public Object before(int p) throws SequenciaVaziaException {
+	public Object before(Node n) throws SequenciaVaziaException {
 		if(isEmpty()) {
 			throw new SequenciaVaziaException("A sequência está vazia");
 		}
-		Node node = atRank(p);
-		return node.getAnterior().getValor();
+		return n.getAnterior().getValor();
 	}
 
 	@Override
-	public Object after(int p) throws SequenciaVaziaException {
+	public Object after(Node n) throws SequenciaVaziaException {
 		if(isEmpty()) {
-			throw new SequenciaVaziaException("A sequência está vazia");
+			throw new SequenciaVaziaException("A sequência está vazia!");
 		}
-		Node node = atRank(p);
-		return node.getProximo().getValor();
+		return n.getProximo().getValor();
 	}
 
 	@Override
@@ -237,7 +219,10 @@ public class SequenciaDuplamenteEncadeada implements ISequencia{
 		return node;
 	}
 	
-	public Integer rankOf(Node node) {
+	public Integer rankOf(Node node) throws SequenciaVaziaException {
+		if (isEmpty()) {
+			throw new SequenciaVaziaException("A Sequencia está vazia!");
+		}
 		Node aux = header.getProximo();
 		int r = 0;
 		while (aux != node && aux != trailer) {

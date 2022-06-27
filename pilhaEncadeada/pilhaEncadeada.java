@@ -38,12 +38,12 @@ public class pilhaEncadeada implements IPilha {
 
 	@Override
 	public Object top() throws PilhaVaziaException {
-		return ultimo.getValor();
+		return primeiro.getValor();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return primeiro == null;
+		return tamanho == 0;
 	}
 
 	@Override

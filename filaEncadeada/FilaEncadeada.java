@@ -30,7 +30,7 @@ public class FilaEncadeada implements IFilaEncadeada {
 	@Override
 	public Object dequeue() throws FilaVaziaException {
 		if(isEmpty()) {
-			throw new FilaVaziaException("A fila está vazia");
+			throw new FilaVaziaException("A fila está vazia!");
 		}
 		Node aux = primeiro;
 		primeiro = aux.getProximo();
@@ -41,25 +41,25 @@ public class FilaEncadeada implements IFilaEncadeada {
 	@Override
 	public Object first() throws FilaVaziaException {
 		if(isEmpty()) {
-			throw new FilaVaziaException("A fila está vazia");
+			throw new FilaVaziaException("A fila está vazia!");
 		}
 		return primeiro.getValor();
 	}
 
 	@Override
 	public int size() {
-		return tamanho + 1;
+		return tamanho;
 	}
 	
 	@Override
 	public boolean isEmpty() {
-		return primeiro == null;
+		return tamanho == 0;
 	}
 	
 	public void mostrar() {
 		Node percorre = primeiro;
-
-		for (int i = 0; i < tamanho; i++) {
+		
+		for (int i = 0; i < size(); i++) {
 			System.out.println(percorre.getValor());
 			percorre = percorre.getProximo();
 		}
