@@ -24,9 +24,6 @@ public class TestesSequenciaDuplamenteEncadeada {
 		System.out.println("Tamanho: " + sequencia0.size());
 		System.out.println("Está vazio: " + sequencia0.isEmpty());
 		System.out.println("----------------------");
-		
-		
-		
 		System.out.println("Metodos de Lista: ");
 		SequenciaDuplamenteEncadeada sequencia1 = new SequenciaDuplamenteEncadeada();
 		System.out.println("Vetor 1:");
@@ -69,5 +66,4 @@ public class TestesSequenciaDuplamenteEncadeada {
 		Sequencia3.replaceElement(Sequencia3.atRank(2), 100);
 		Sequencia3.mostrar();
 	}
-
 }
