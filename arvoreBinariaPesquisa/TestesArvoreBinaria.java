@@ -3,7 +3,7 @@ package arvoreBinariaPesquisa;
 public class TestesArvoreBinaria {
 
 	public static void main(String[] args) throws InvalidNoException {
-		ArvoreBinaria arvore = new ArvoreBinaria(10);
+		ArvoreBinariaPesquisa arvore = new ArvoreBinariaPesquisa(10);
 		arvore.insert(5);
         arvore.insert(15);
         arvore.insert(2);

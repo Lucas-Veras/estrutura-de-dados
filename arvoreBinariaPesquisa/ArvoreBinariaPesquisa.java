@@ -2,12 +2,12 @@ package arvoreBinariaPesquisa;
 
 import java.util.ArrayList;
 
-public class ArvoreBinaria {
+public class ArvoreBinariaPesquisa {
 	private Node raiz;
 	private int tamanho;
 	
 	
-	public ArvoreBinaria(Object elemento) {
+	public ArvoreBinariaPesquisa(Object elemento) {
 		raiz = new Node(elemento);
 		tamanho = 1;
 	}
