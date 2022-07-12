@@ -233,7 +233,7 @@ public class ArvoreBinariaPesquisa {
 		}
 	}
 
-    private void printProfundidade(ArrayList<Object> elementos, Node raiz, int profundidade) {
+    private void organizador(ArrayList<Object> elementos, Node raiz, int profundidade) {
         if (raiz == null && profundidade > 0){
             for (int i = 0; i < profundidade; i++){
                 elementos.add("-");
@@ -250,8 +250,8 @@ public class ArvoreBinariaPesquisa {
             elementos.add(raiz.getElemento());
         }
         else if (profundidade > 0) {
-            printProfundidade(elementos, raiz.getFilhoEsquerda(), profundidade - 1);
-            printProfundidade(elementos, raiz.getFilhoDireita(), profundidade - 1);
+            organizador(elementos, raiz.getFilhoEsquerda(), profundidade - 1);
+            organizador(elementos, raiz.getFilhoDireita(), profundidade - 1);
         }
     }
     
@@ -260,7 +260,7 @@ public class ArvoreBinariaPesquisa {
         double nos = Math.pow(2, 4);
         for (int i = 0; i <= h; i++){
             ArrayList<Object> lista = new ArrayList<>();
-            printProfundidade(lista, raiz, i);
+            organizador(lista, raiz, i);
             for (int j = 0; j < (nos * 3) / (lista.size() + 1); j++) {
                 System.out.print(" ");
             }
