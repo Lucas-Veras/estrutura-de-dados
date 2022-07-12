@@ -277,8 +277,5 @@ public class ArvoreBinariaPesquisa {
             }
             System.out.println();
         }
-
     }
-    
-
 }
