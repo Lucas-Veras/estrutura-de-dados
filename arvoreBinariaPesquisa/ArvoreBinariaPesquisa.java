@@ -37,13 +37,35 @@ public class ArvoreBinariaPesquisa {
 	public void insert(Object k) {
 		Node aux = find(k, raiz);
 		Node novoNode = new Node(k);
-		if((int) k < (int) aux.getElemento()) {
-			aux.setFilhoEsquerda(novoNode);
-			novoNode.setPai(aux);
+		if((int) k > (int) aux.getElemento()) {
+			if (hasRight(aux)){
+                aux.getFilhoDireita().setPai(novoNode);
+                if ((int) aux.getFilhoDireita().getElemento() > (int) k){
+                    novoNode.setFilhoDireita(aux.getFilhoDireita());
+                }
+                else {
+                    novoNode.setFilhoEsquerda(aux.getFilhoDireita());
+                }
+            }
+            else {
+                novoNode.setPai(aux);
+            }
+            aux.setFilhoDireita(novoNode);
 		}
-		else if((int) k > (int) aux.getElemento()) {
-			aux.setFilhoDireita(novoNode);
-			novoNode.setPai(aux);
+		else {
+			if (hasLeft(aux)){
+                aux.getFilhoEsquerda().setPai(novoNode);
+                if ((int) aux.getFilhoEsquerda().getElemento() <= (int) k){
+                    novoNode.setFilhoEsquerda(aux.getFilhoEsquerda());
+                }
+                else {
+                    novoNode.setFilhoDireita(aux.getFilhoEsquerda());
+                }
+            }
+            else {
+                novoNode.setPai(aux);
+            }
+            aux.setFilhoEsquerda(novoNode);
 		}
 		tamanho++;
 	}
@@ -233,7 +255,7 @@ public class ArvoreBinariaPesquisa {
         }
     }
     
-    public void printArvore() {
+    public void mostrarArvore() {
         int h = height(raiz);
         double nos = Math.pow(2, 4);
         for (int i = 0; i <= h; i++){
@@ -257,4 +279,6 @@ public class ArvoreBinariaPesquisa {
         }
 
     }
+    
+
 }

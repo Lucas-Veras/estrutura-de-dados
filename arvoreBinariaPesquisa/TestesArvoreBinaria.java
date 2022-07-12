@@ -11,21 +11,23 @@ public class TestesArvoreBinaria {
         arvore.insert(22);
 		
         System.out.println("Teste 1 / Árvore:");
-        arvore.printArvore();
-		System.out.println("Tamanho: " + arvore.size());
+        arvore.mostrarArvore();
+        System.out.println("Tamanho: " + arvore.size());
         System.out.println("Raiz: " + arvore.root().getElemento());
 		
         System.out.println("-------------------------------------");
+        
         System.out.println("Teste 2 / Árvore (Elemento 25 inserido):");
         arvore.insert(25);
-        arvore.printArvore();
+        arvore.mostrarArvore();
         System.out.println("Tamanho: " + arvore.size());
         System.out.println("Raiz: " + arvore.root().getElemento());
         
         System.out.println("-------------------------------------");
+        
         System.out.println("Teste 3 / Árvore (Elemento 5 removido):");
         arvore.remove(5);
-        arvore.printArvore();
+        arvore.mostrarArvore();
         System.out.println("Tamanho: " + arvore.size());
         System.out.println("Raiz: " + arvore.root().getElemento());
 	}
