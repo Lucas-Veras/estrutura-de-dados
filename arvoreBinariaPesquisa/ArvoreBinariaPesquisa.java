@@ -232,50 +232,31 @@ public class ArvoreBinariaPesquisa {
 			System.out.println(" " + no.getElemento());
 		}
 	}
-
-    private void organizador(ArrayList<Object> elementos, Node raiz, int profundidade) {
-        if (raiz == null && profundidade > 0){
-            for (int i = 0; i < profundidade; i++){
-                elementos.add("-");
-                elementos.add("-");
-            }
-        }
-        if (raiz == null && profundidade == 0){
-            elementos.add("-");
-        }
-        if (raiz == null) {
-            return;
-        }
-        if (profundidade == 0) {
-            elementos.add(raiz.getElemento());
-        }
-        else if (profundidade > 0) {
-            organizador(elementos, raiz.getFilhoEsquerda(), profundidade - 1);
-            organizador(elementos, raiz.getFilhoDireita(), profundidade - 1);
-        }
-    }
     
     public void mostrarArvore() {
-        int h = height(raiz);
-        double nos = Math.pow(2, 4);
-        for (int i = 0; i <= h; i++){
-            ArrayList<Object> lista = new ArrayList<>();
-            organizador(lista, raiz, i);
-            for (int j = 0; j < (nos * 3) / (lista.size() + 1); j++) {
-                System.out.print(" ");
-            }
-            for (int k = 0; k < lista.size(); k++) {
-                if (lista.get(k) == "-" && i < h){
-                    System.out.print("-");
-                }
-                else if(lista.get(k) != "-"){
-                    System.out.print("(" + lista.get(k) + ")");
-                }
-                for (int j = 0; j < ((nos * 2)/(lista.size() + 1)) + 1; j++) {
-                    System.out.print(" ");
+        ArrayList<Node> elementos = new ArrayList<>();
+        inOrderPrint(elementos, root());
+        System.out.println("Árvore Binária de pesquisa:");
+        for(int k = 0; k <= height(raiz); k++) {
+            for(int i = 0; i < size(); i++) {
+                if(depth(elementos.get(i)) == k) {
+                    System.out.print("(" + elementos.get(i).getElemento() + ")");
+                } 
+                else {
+                    System.out.print("( " + ")");
                 }
             }
             System.out.println();
+        }
+    }
+
+    private void inOrderPrint(ArrayList<Node> elementos, Node no) {
+        if(no.getFilhoEsquerda() != null) {
+        	inOrderPrint(elementos, no.getFilhoEsquerda());
+        }
+        elementos.add(no);
+        if(no.getFilhoDireita() != null) {
+        	inOrderPrint(elementos, no.getFilhoDireita());
         }
     }
 }
