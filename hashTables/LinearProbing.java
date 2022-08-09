@@ -30,23 +30,24 @@ public class LinearProbing {
 		}
 		else {
 			int index = funcaoHash(chave, capacidade);
-			while(table[index] != null) {
+			while(table[index] != null && table[index].getElemento() != "AV") {
 				index = (index + 1) % capacidade;
 			}
-			table[index] = new Elemento(/*chave*/index, elemento);
+			table[index] = new Elemento(chave, elemento);
 			tamanho++;
 		}
 	}
 	
 	public Object remove(int chave) {
 		int index = funcaoHash(chave, capacidade);
-		Elemento aux = find(index);
+		Elemento aux = find(chave);
+		Object elemento = aux.elemento();
 		if(aux.chave() == chave) {
-			table[index] = null;
+			table[index].setElemento("AV"); 
 			tamanho--;
-			return aux.elemento();
+			return elemento;
 		}
-		return aux.getElemento();
+		return elemento;
 	}
 	
 	public Elemento find(int chave) {
@@ -82,7 +83,7 @@ public class LinearProbing {
 	
 	public void printHash() {
 		for(int i = 0; i < capacidade; i++) {
-			if(table[i] != null) {
+			if(table[i] != null && table[i].getElemento() != "AV") {
 				System.out.println(i + " : " + table[i].getElemento());
 			}
 		}
