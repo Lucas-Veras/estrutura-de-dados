@@ -34,10 +34,13 @@ public class ArvoreBinariaPesquisa {
 		return v;
 	}
 	
-	public void insert(Object k) {
+	public void insert(Object k) throws InvalidNoException {
 		Node aux = find(k, raiz);
 		Node novoNode = new Node(k);
-		if((int) k > (int) aux.getElemento()) {
+		if ((int) k == (int) aux.getElemento()) {
+			throw new InvalidNoException("Elemento " + k + " já existe!");
+		}
+		else if((int) k > (int) aux.getElemento()) {
 			if (hasRight(aux)){
                 aux.getFilhoDireita().setPai(novoNode);
                 if ((int) aux.getFilhoDireita().getElemento() > (int) k){
