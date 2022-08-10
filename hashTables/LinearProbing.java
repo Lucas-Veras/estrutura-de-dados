@@ -43,7 +43,7 @@ public class LinearProbing {
 		Elemento aux = find(chave);
 		Object elemento = aux.elemento();
 		if(aux.chave() == chave) {
-			table[index].setElemento("AV"); 
+			table[index] = new Elemento(chave, "AV"); 
 			tamanho--;
 			return elemento;
 		}
