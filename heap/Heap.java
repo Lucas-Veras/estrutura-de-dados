@@ -10,7 +10,6 @@ public class Heap {
 		this.capacidade = capacidade;
 		tamanho = 0;
 	}
-	//printHeap
 	
 	public void insert(int elemento) {
 		if(tamanho >= capacidade - 1) {

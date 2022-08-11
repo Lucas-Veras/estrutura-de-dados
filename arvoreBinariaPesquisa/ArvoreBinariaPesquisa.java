@@ -3,7 +3,7 @@ package arvoreBinariaPesquisa;
 import java.util.ArrayList;
 
 public class ArvoreBinariaPesquisa {
-	private Node raiz;
+	public Node raiz;
 	private int tamanho;
 	
 	
@@ -167,6 +167,10 @@ public class ArvoreBinariaPesquisa {
 	
 	public Node root() {
 		return raiz;
+	}
+	
+	public void setRoot(Node raiz) {
+		this.raiz = raiz;
 	}
 	
 	public Node parent(Node no) {
