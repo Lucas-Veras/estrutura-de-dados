@@ -39,11 +39,10 @@ public class LinearProbing {
 	}
 	
 	public Object remove(int chave) {
-		int index = funcaoHash(chave, capacidade);
 		Elemento aux = find(chave);
 		Object elemento = aux.elemento();
 		if(aux.chave() == chave) {
-			table[index] = new Elemento(chave, "AV"); 
+			aux.setElemento("AV");
 			tamanho--;
 			return elemento;
 		}
