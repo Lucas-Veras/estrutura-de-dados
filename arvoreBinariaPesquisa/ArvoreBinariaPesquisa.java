@@ -6,7 +6,6 @@ public class ArvoreBinariaPesquisa {
 	public Node raiz;
 	private int tamanho;
 	
-	
 	public ArvoreBinariaPesquisa(Object elemento) {
 		raiz = new Node(elemento);
 		tamanho = 1;

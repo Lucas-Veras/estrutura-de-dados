@@ -28,6 +28,11 @@ public class Heap {
 		if(isEmpty()) {
 			throw new HeapException("Heap vazio!");
 		}
+		if(tamanho == 1) {
+			Object aux = min();
+			heap[1] = heap[tamanho--];
+			return aux;
+		}
 		Object aux = min();
 		heap[1] = heap[tamanho--];
 		downHeap(1);
@@ -45,7 +50,7 @@ public class Heap {
 	}
 	
 	public void downHeap(int index) {
-		if(isExternal(index) || size() == 0) {
+		if(isExternal(index) || size() == 1) {
 			return;
 		}
 		else if((int) heap[index] > (int) leftChild(index) || (int) heap[index] > (int) rightChild(index)) {

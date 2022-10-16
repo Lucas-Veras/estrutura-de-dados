@@ -10,6 +10,11 @@ public class TestesArvoreBinaria {
         arvore.insert(8);
         arvore.insert(22);
 		
+        arvore.insert(50);
+        arvore.insert(17);
+        arvore.insert(23);
+        arvore.insert(81);
+        arvore.insert(29);
         System.out.println("Teste 1 / Árvore:");
         arvore.mostrarArvore();
         System.out.println("Tamanho: " + arvore.size());
