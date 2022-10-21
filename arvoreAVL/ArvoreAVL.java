@@ -185,8 +185,8 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 			no.setFilhoDireita(null);
 		}
 		// atualização do FB
-		no.setFb((no.getFb() + 1) - min(novoNode.getFb(), 0));
-		novoNode.setFb((novoNode.getFb() + 1) + max(no.getFb(), 0));
+		no.setFb((no.getFb() + 1) - Math.min(novoNode.getFb(), 0));
+		novoNode.setFb((novoNode.getFb() + 1) + Math.max(no.getFb(), 0));
 		if (isRoot(no)) {
 			root = novoNode;
 		}
@@ -223,28 +223,10 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 			no.setFilhoEsquerda(null);
 		}
 		// atualização do FB
-		no.setFb((no.getFb() - 1) - max(novoNode.getFb(), 0));
-		novoNode.setFb((novoNode.getFb() - 1) + min(no.getFb(), 0));
+		no.setFb((no.getFb() - 1) - Math.max(novoNode.getFb(), 0));
+		novoNode.setFb((novoNode.getFb() - 1) + Math.min(no.getFb(), 0));
 		if (isRoot(no)) {
 			root = novoNode;
-		}
-	}
-	
-	public int min(int valor1, int valor2) {
-		if (valor1 >= valor2) {
-			return valor2;
-		} 
-		else {
-			return valor1;
-		}
-	}
-
-	public int max(int valor1, int valor2) {
-		if (valor1 >= valor2) {
-			return valor1;
-		} 
-		else {
-			return valor2;
 		}
 	}
 
