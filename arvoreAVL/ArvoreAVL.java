@@ -28,7 +28,6 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 	                novoNode.setPai(aux);
 	            }
 	            aux.setFilhoDireita(novoNode);
-	            System.out.println("-"+novoNode.getPai().getElemento());
 	            atualizaFb(novoNode.getPai(), false, 1);
 			}
 			else {
@@ -129,7 +128,7 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 				simpleRotationLeft(no);
 			// dupla
 			} else {
-				simplerotationRight(subarvoreDireita);
+				simpleRotationRight(subarvoreDireita);
 				simpleRotationLeft(no);
 			}
 		} 
@@ -138,12 +137,12 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 			Node subarvoreEsquerda = no.getFilhoEsquerda();
 			// simples
 			if (subarvoreEsquerda.getFb() >= 0) {
-				simplerotationRight(no);
+				simpleRotationRight(no);
 			// dupla
 			} 
 			else {
 				simpleRotationLeft(subarvoreEsquerda);
-				simplerotationRight(no);
+				simpleRotationRight(no);
 			}
 		} 
 		// sem rotação
@@ -193,7 +192,7 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 		}
 	}
 
-	public void simplerotationRight(Node no) {
+	public void simpleRotationRight(Node no) {
 		Node novoNode = no.getFilhoEsquerda();
 		if (hasRight(novoNode)) {
 			no.setFilhoEsquerda(novoNode.getFilhoDireita());
