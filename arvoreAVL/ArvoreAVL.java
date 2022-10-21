@@ -28,7 +28,7 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 	                novoNode.setPai(aux);
 	            }
 	            aux.setFilhoDireita(novoNode);
-	            atualizaFb(novoNode.getPai(), false, 1);
+	            updateFb(novoNode.getPai(), false, 1);
 			}
 			else {
 				if (hasLeft(aux)){
@@ -44,7 +44,7 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 	                novoNode.setPai(aux);
 	            }
 	            aux.setFilhoEsquerda(novoNode);
-	            atualizaFb(novoNode.getPai(), true, 1);
+	            updateFb(novoNode.getPai(), true, 1);
 			}
 		}
 	}
@@ -63,30 +63,30 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 			else {
 				aux.getPai().setFilhoDireita(null);
 			}
-			atualizaFb(nodePai, IsLeftChild, 2);
+			updateFb(nodePai, IsLeftChild, 2);
 		}
 		else if(aux.getFilhoDireita() == null) {
 			if(aux.getPai().getFilhoDireita() == aux) {
 				aux.getPai().setFilhoDireita(aux.getFilhoEsquerda());
 				aux.getFilhoEsquerda().setPai(aux.getPai());
-				atualizaFb(nodePai, IsLeftChild, 2);
+				updateFb(nodePai, IsLeftChild, 2);
 			}
 			else {
 				aux.getPai().setFilhoEsquerda(aux.getFilhoDireita());
 				aux.getFilhoDireita().setPai(aux.getPai());
-				atualizaFb(nodePai, IsLeftChild, 2);
+				updateFb(nodePai, IsLeftChild, 2);
 			}
 		}
 		else if(aux.getFilhoEsquerda() == null) {
 			if(aux.getPai().getFilhoDireita() == aux) {
 				aux.getPai().setFilhoDireita(aux.getFilhoDireita());
 				aux.getFilhoDireita().setPai(aux.getPai());
-				atualizaFb(nodePai, IsLeftChild, 2);
+				updateFb(nodePai, IsLeftChild, 2);
 			}
 			else {
 				aux.getPai().setFilhoEsquerda(aux.getFilhoDireita());
 				aux.getFilhoDireita().setPai(aux.getPai());
-				atualizaFb(nodePai, IsLeftChild, 2);
+				updateFb(nodePai, IsLeftChild, 2);
 			}
 		}
 		else {
@@ -101,11 +101,11 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 			
 			remove(minimo.getElemento());
 			aux.setElemento(minimo.getElemento());
-			atualizaFb(nodePai, IsLeftChild, 2);
+			updateFb(nodePai, IsLeftChild, 2);
 		}
 	}
 	
-	public void atualizaFb(Node no, Boolean leftchild, int operacao) {
+	public void updateFb(Node no, Boolean leftchild, int operacao) {
 		if (operacao == 1) { //insert
 			if (leftchild == true) {
 				no.setFb(no.getFb() + 1);
@@ -147,10 +147,10 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 		} 
 		// sem rotação
 		else if (no != root && no.getFb() != 0 && operacao == 1) {
-			atualizaFb(no.getPai(), isLeftChild(no), 1);
+			updateFb(no.getPai(), isLeftChild(no), 1);
 		}
 		else if (no != root && no.getFb() == 0 && operacao == 2) {
-			atualizaFb(no.getPai(), isLeftChild(no.getPai()), 2);
+			updateFb(no.getPai(), isLeftChild(no.getPai()), 2);
 		}
 	}
 
