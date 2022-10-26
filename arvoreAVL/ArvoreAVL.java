@@ -90,31 +90,31 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 			}
 		}
 		else {
-			Node minimo = aux;
-			minimo = minimo.getFilhoDireita();
-			nodePai = minimo.getPai();
-			IsLeftChild = isLeftChild(minimo);
+			Node min = aux;
+			min = min.getFilhoDireita();
+			nodePai = min.getPai();
+			IsLeftChild = isLeftChild(min);
 			
-			while(minimo.getFilhoEsquerda() != null) {
-				minimo = minimo.getFilhoEsquerda();
+			while(min.getFilhoEsquerda() != null) {
+				min = min.getFilhoEsquerda();
 			}
 			
-			remove(minimo.getElemento());
-			aux.setElemento(minimo.getElemento());
+			remove(min.getElemento());
+			aux.setElemento(min.getElemento());
 			updateFb(nodePai, IsLeftChild, 2);
 		}
 	}
 	
-	public void updateFb(Node no, Boolean leftchild, int operacao) {
-		if (operacao == 1) { //insert
-			if (leftchild == true) {
+	public void updateFb(Node no, Boolean isLeftchild, int action) {
+		if (action == 1) { //insert
+			if (isLeftchild == true) {
 				no.setFb(no.getFb() + 1);
 			} else {
 				no.setFb(no.getFb() - 1);
 			}
 		} 
-		else if (operacao == 2 ) { //remove
-			if (leftchild == true) {
+		else if (action == 2 ) { //remove
+			if (isLeftchild == true) {
 				no.setFb(no.getFb() - 1);
 			} else {
 				no.setFb(no.getFb() + 1);
@@ -122,13 +122,13 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 		}
 		// rotação para esquerda
 		if (no.getFb() <= -2) {
-			Node subarvoreDireita = no.getFilhoDireita();
+			Node subTreeRight = no.getFilhoDireita();
 			// simples
-			if (subarvoreDireita.getFb() <= 0) {
+			if (subTreeRight.getFb() <= 0) {
 				simpleRotationLeft(no);
 			// dupla
 			} else {
-				simpleRotationRight(subarvoreDireita);
+				simpleRotationRight(subTreeRight);
 				simpleRotationLeft(no);
 			}
 		} 
@@ -146,10 +146,10 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 			}
 		} 
 		// sem rotação
-		else if (no != root && no.getFb() != 0 && operacao == 1) {
+		else if (no.getFb() != 0 && no != root && action == 1) {
 			updateFb(no.getPai(), isLeftChild(no), 1);
 		}
-		else if (no != root && no.getFb() == 0 && operacao == 2) {
+		else if (no.getFb() == 0 && no != root && action == 2) {
 			updateFb(no.getPai(), isLeftChild(no.getPai()), 2);
 		}
 	}
@@ -241,11 +241,12 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 	public void mostraArvore() {
 		organizador(root);
 		System.out.println("Árvore Binária de Pesquisa:");
-		for (int j = 0; j <= height(); j++) {
-			for (int i = 0; i < size(); i++) {
-				if (depth(nos.get(i)) == j) {
-					System.out.print("\t" + nos.get(i).getElemento() + "[" + nos.get(i).getFb() + "]");
-				} else {
+		for (int i = 0; i <= height(); i++) {
+			for (int j = 0; j < size(); j++) {
+				if (depth(nos.get(j)) == i) {
+					System.out.print("\t" + nos.get(j).getElemento() + "[" + nos.get(j).getFb() + "]");
+				} 
+				else {
 					System.out.print("\t");
 				}
 			}
