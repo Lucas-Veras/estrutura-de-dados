@@ -107,14 +107,14 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 	
 	public void updateFb(Node no, Boolean isLeftchild, int action) {
 		if (action == 1) { //insert
-			if (isLeftchild == true) {
+			if (isLeftchild == true || isRoot(no)) {
 				no.setFb(no.getFb() + 1);
 			} else {
 				no.setFb(no.getFb() - 1);
 			}
 		} 
 		else if (action == 2 ) { //remove
-			if (isLeftchild == true) {
+			if (isLeftchild == true || isRoot(no)) {
 				no.setFb(no.getFb() - 1);
 			} else {
 				no.setFb(no.getFb() + 1);

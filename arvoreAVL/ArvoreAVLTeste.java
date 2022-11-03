@@ -17,7 +17,8 @@ public class ArvoreAVLTeste {
 		arvore.insert(10);
 		arvore.mostraArvore();
 		arvore.remove(1);
-		arvore.remove(2);
+		arvore.mostraArvore();
+		arvore.remove(3);
 		arvore.mostraArvore();
 		
 	}
