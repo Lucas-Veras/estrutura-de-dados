@@ -190,7 +190,7 @@ public class ArvoreAVL extends ArvoreBinariaPesquisa {
 		if (isRoot(no)) {
 			root = novoNode;
 		}
-	}
+	}	
 
 	public void simpleRotationRight(Node no) {
 		Node novoNode = no.getFilhoEsquerda();
