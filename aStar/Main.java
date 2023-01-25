@@ -148,7 +148,7 @@ public class Main {
                     if (x < 0 || x >= matriz.length || y < 0 || y >= matriz[0].length) {
                         continue;
                     }
-                    if (matriz[x][y] == 0 || visitados.contains(new NoStar(x, y, 0, 0, null))) {
+                    if (matriz[x][y] == 1 || visitados.contains(new NoStar(x, y, 0, 0, null))) {
                         continue;
                     }
                     int g = atual.g + 1;
@@ -185,7 +185,6 @@ public class Main {
         boolean[][] visitados = new boolean[rows][cols];
         PriorityQueue<NodeForDijkstra> queue = new PriorityQueue<>();
 
-        // Initialize distance and visited arrays
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 distancia[i][j] = Integer.MAX_VALUE;
@@ -193,27 +192,21 @@ public class Main {
             }
         }
 
-        // Add starting node to queue and set distance to 0
         queue.add(new NodeForDijkstra(inicioX, inicioY, 0));
         distancia[inicioX][inicioY] = 0;
 
-        // Loop until queue is empty
         while (!queue.isEmpty()) {
             NodeForDijkstra curr = queue.poll();
 
-            // Mark current node as visited
             visitados[curr.x][curr.y] = true;
 
-
-            // Check neighbors of current node
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    if (i == 0 && j == 0) continue; // Skip current node
-                    if (curr.x + i < 0 || curr.x + i >= rows || curr.y + j < 0 || curr.y + j >= cols) continue; // Skip out of bounds nodes
-                    if (matriz[curr.x + i][curr.y + j] == 0) continue; // Skip walls
-                    if (visitados[curr.x + i][curr.y + j]) continue; // Skip visited nodes
+                    if (i == 0 && j == 0) continue;
+                    if (curr.x + i < 0 || curr.x + i >= rows || curr.y + j < 0 || curr.y + j >= cols) continue; 
+                    if (matriz[curr.x + i][curr.y + j] == 1) continue;
+                    if (visitados[curr.x + i][curr.y + j]) continue; 
 
-                    // Update distance if a shorter path is found
                     int novaDistancia = distancia[curr.x][curr.y] + 1;
                     if (novaDistancia < distancia[curr.x + i][curr.y + j]) {
                         distancia[curr.x + i][curr.y + j] = novaDistancia;
@@ -234,12 +227,11 @@ public class Main {
             int minX = 0;
             int minY = 0;
 
-            // Check neighbors of current node
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    if (i == 0 && j == 0) continue; // Skip current node
-                    if (atualX + i < 0 || atualX + i >= matriz.length || atualY + j < 0 || atualY + j >= matriz[0].length) continue; // Skip out of bounds nodes
-                    if (matriz[atualX + i][atualY + j] == 0) continue; // Skip walls
+                    if (i == 0 && j == 0) continue; 
+                    if (atualX + i < 0 || atualX + i >= matriz.length || atualY + j < 0 || atualY + j >= matriz[0].length) continue; 
+                    if (matriz[atualX + i][atualY + j] == 1) continue; 
                     if (distancia[atualX + i][atualY + j] < minDist) {
                         minDist = distancia[atualX + i][atualY + j];
                         minX = atualX + i;
